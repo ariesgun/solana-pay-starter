@@ -7,5 +7,14 @@
     "image_url": "https://i.imgur.com/rVD8bjt.png",
     "filename": "Emojis.zip",
     "hash": "QmWWH69mTL66r3H8P4wUn24t1L5pvdTJGUTKBqT11KCHS5"
+  },
+  {
+    "id": 2,
+    "name": "Angry",
+    "price": "0.10",
+    "image_url": "https://i.imgur.com/aXrXYbc.jpeg",
+    "description": "I am so angry meme",
+    "filename": "icons (1).zip",
+    "hash": "QmbUkp3WsTYKPKbx3R2E27XjYvqRch8rCWbRvoYkqFEJXJ"
   }
 ]

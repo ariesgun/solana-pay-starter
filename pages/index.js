@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import CreateProduct from "../components/CreateProduct";
 import Product from "../components/Product";
 import HeadComponent from '../components/Head';
 
-import { PublicKey } from '@solana/web3.js';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
@@ -16,8 +16,12 @@ const App = () => {
   const { publicKey } = useWallet();
   const [products, setProducts] = useState([]);
 
+  const isOwner = ( publicKey ? publicKey.toString() === process.env.NEXT_PUBLIC_OWNER_PUBLIC_KEY : false );
+  const [creating, setCreating] = useState(false);
+
   useEffect(() => {
     if (publicKey) {
+      console.log("Owner", isOwner, publicKey.toString());
       fetch(`/api/fetchProducts`)
         .then(response => response.json())
         .then(data => {
@@ -52,9 +56,17 @@ const App = () => {
         <header className="header-container">
           <p className="header"> 😳 Buildspace Emoji Store 😈</p>
           <p className="sub-text">The only emoji store that accepts sh*tcoins</p>
+
+          {isOwner && (
+            <button className="create-product-button" onClick={() => setCreating(!creating)}>
+              {creating ? "Close" : "Create Product"}
+            </button>
+          )}
+
         </header>
 
         <main>
+          {creating && <CreateProduct />}
           {publicKey ? renderItemBuyContainer() : renderNotConnectedContainer()}
         </main>
 
